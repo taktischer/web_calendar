@@ -2,9 +2,10 @@
 {% load static %}
 
 {% block content %}
-    <form method="post" id="test">
+    <link rel="stylesheet" href="{% static 'appointment/../static/appointment.css' %}">
+    <form method="post" id="create-appointment-form">
         {% csrf_token %}
         {{ form.as_p }}
-        <input type="submit" id="sumbit-appointment">
+        <input type="submit" id="submit-appointment">
     </form>
 {% endblock %}

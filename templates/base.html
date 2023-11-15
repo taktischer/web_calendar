@@ -6,10 +6,28 @@
     <meta charset="UTF-8">
     <title>Calendar App</title>
     <link rel="stylesheet" href="{% static 'styles.css' %}">
-    <link rel="stylesheet" href="{% static 'appointment/appointment.css' %}">
 </head>
 <body>
-    {% block content %}
-    {% endblock %}
+    <header id="title">
+        <h1>Web-Kalender</h1>
+    </header>
+    <main>
+        <div id="sidenavbar">
+            <a href="{% url 'index' %}">Kalender</a>
+            <a href="{% url 'appointment-create' %}">Create Appointment</a>
+            <a>Schularbeiten</a>
+            <a>Tests</a>
+            <a>Freie Tage</a>
+            <a>Externe Termine</a>
+        </div>
+        <div id="content">
+            {% block content %}
+            {% endblock %}
+        </div>
+    </main>
+    <footer id="legal-footer">
+        <a>Impressum</a>
+        <a>Datenschutz</a>
+    </footer>
 </body>
 </html>
