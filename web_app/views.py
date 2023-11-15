@@ -1,5 +1,5 @@
 from django.contrib.auth.mixins import UserPassesTestMixin
-from django.views.generic import TemplateView, FormView
+from django.views.generic import TemplateView, FormView, RedirectView
 
 from web_app.forms import AppointmentCreateForm
 from web_app.models import Appointment
@@ -31,3 +31,16 @@ class AppointmentCreateView(UserPassesTestMixin, FormView):
                                    start_time=post_data['start_time'],
                                    end_time=post_data['end_time'])
         return super().form_valid(form)
+
+
+class AppointmentDeleteRedirect(UserPassesTestMixin, RedirectView):
+    def test_func(self):
+        appointment = Appointment.objects.get(pk=self.kwargs['appointment_id'])
+        return self.request.user.is_authenticated and appointment.user == self.request.user
+
+    def get_redirect_url(self, *args, **kwargs):
+        self.url = "/"
+        appointment = Appointment.objects.get(pk=self.kwargs['appointment_id'])
+        appointment.delete()
+        return super().get_redirect_url(self, *args, **kwargs)
+

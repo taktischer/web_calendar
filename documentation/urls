@@ -1,2 +1,8 @@
 index: index page
 -> /
+
+appointment-create:
+-> /appointment/create
+
+appointment-delete:
+-> /appointment/delete/<int:appointment_id>
