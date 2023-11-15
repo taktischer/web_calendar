@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block head %}
+{% endblock %}
+
+{% block content %}
+    <div class="login-box">
+        <form id="loginForm">
+            {% csrf_token %}
+            <div id="title-div">
+                <label id="title-label">Sign in</label>
+            </div>
+
+            <div class="input-div">
+                <label class="input-label" for="username">Username</label>
+                {{ form.username }}
+            </div>
+            <div class="input-div">
+                <label class="input-label" for="username">Password</label>
+                {{ form.password }}
+            </div>
+
+            <div id="error-message">
+            </div>
+            <div class="input-div">
+                <input type="submit" value="Next" id="login-submit">
+                <input type="button" value="Create account" id="signup-btn"
+                       onclick="location.href='/signup/{% if next %}?next={{ next }}{% endif %}';">
+            </div>
+        </form>
+    </div>
+
+
+    <script>
+        document.getElementById('loginForm').addEventListener('submit', function (e) {
+            e.preventDefault();
+            let formData = new FormData(this);
+            fetch('', {
+                method: 'POST',
+                body: formData,
+                headers: {
+                    'X-Requested-With': 'XMLHttpRequest'
+                },
+            })
+            .then(response => {
+                if (response.ok) {
+                    const urlParams = new URLSearchParams(window.location.search);
+                    const nextUrl = urlParams.get('next');
+
+                    if (nextUrl) {
+                        window.location.href = nextUrl;
+                    } else {
+                        window.location.href = '{% url 'index' %}';
+                    }
+                } else {
+                    return response.json();
+                }
+            })
+            .then(data => {
+                if ('errors' in data) {
+                    document.getElementById("error-message").textContent = "The username or password is incorrect.";
+                }
+            })
+        });
+    </script>
+
+
+
+{% endblock %}
