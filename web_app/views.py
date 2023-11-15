@@ -1,11 +1,11 @@
-from django.contrib.auth import login
+from django.contrib.auth import login, authenticate
 from django.contrib.auth.mixins import UserPassesTestMixin
 from django.http import JsonResponse
 from django.shortcuts import redirect
 from django.urls import reverse
 from django.views.generic import TemplateView, FormView, RedirectView
 
-from web_app.forms import AppointmentCreateForm, LoginForm
+from web_app.forms import AppointmentCreateForm, LoginForm, SignUpForm
 from web_app.models import Appointment
 
 
@@ -75,6 +75,47 @@ class LoginView(UserPassesTestMixin, FormView):
             return self.request.GET.get('next')
         else:
             self.success_url = reverse('index')
+            return super().get_success_url()
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['next'] = self.request.GET.get('next')
+        return context
+
+
+class SignUpView(UserPassesTestMixin, FormView):
+    template_name = "signup.html"
+    form_class = SignUpForm
+
+    def test_func(self):
+        return not self.request.user.is_authenticated
+
+    def get(self, request, *args, **kwargs):
+        if self.request.user.is_anonymous:
+            return super().get(self)
+        else:
+            return redirect('dashboard_view')
+
+    def form_valid(self, form):
+        # Save the form without committing to the database
+        user = form.save(commit=False)
+
+        # Set the user's password and save
+        user.set_password(form.cleaned_data['password'])
+        user.save()
+
+        # Authenticate and log in the user
+        authenticated_user = authenticate(username=user.username, password=form.cleaned_data['password'])
+        if authenticated_user:
+            login(self.request, authenticated_user)
+
+        return super().form_valid(form)
+
+    def get_success_url(self):
+        if self.request.GET.get('next'):
+            return self.request.GET.get('next')
+        else:
+            self.success_url = reverse('dashboard')
             return super().get_success_url()
 
     def get_context_data(self, **kwargs):
