@@ -7,7 +7,7 @@ class IndexView(TemplateView):
     template_name = "index.html"
 
 
-class AppointmentView(FormView):
+class AppointmentCreateView(FormView):
     template_name = "appointment_create.html"
     form_class = AppointmentCreateForm
 
