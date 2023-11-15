@@ -26,3 +26,24 @@ class Migration(migrations.Migration):
             ],
         ),
     ]
+
+
+class MigrationBalcinovic(migrations.Migration):
+
+    initial = True
+
+    dependencies = [
+        migrations.swappable_dependency(settings.AUTH_USER_MODEL),
+    ]
+
+    operations = [
+        migrations.CreateModel(
+            name='BalcinoivcDB',
+            fields=[
+                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('vorname', models.CharField(max_length=64)),
+                ('nachname', models.CharField(max_length=64)),
+                ('gebutsdatum', models.DateTimeField()),
+            ],
+        ),
+    ]

@@ -8,3 +8,9 @@ class Appointment(models.Model):
     description = models.CharField(max_length=500, blank=False, null=False)
     start_time = models.DateTimeField(blank=False, null=False)
     end_time = models.DateTimeField(blank=True, null=True)
+
+
+class BalcinovicsDB(models.Model):
+    vorname = models.CharField(max_length=64, blank=False, null=False)
+    nachname = models.CharField(max_length=64, blank=False, null=False)
+    geburtstag = models.DateTimeField(blank=False, null=False)
