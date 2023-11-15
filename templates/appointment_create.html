@@ -2,9 +2,9 @@
 {% load static %}
 
 {% block content %}
-    <form method="post">
+    <form method="post" id="test">
         {% csrf_token %}
-        {{ form }}
-        <input type="submit">
+        {{ form.as_p }}
+        <input type="submit" id="sumbit-appointment">
     </form>
 {% endblock %}
