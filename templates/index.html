@@ -2,12 +2,63 @@
 {% load static %}
 
 {% block content %}
-    <div id="index-container">
-        <div id="index-left">
-            Kalender
+    <div id="calendar">
+        <header id="calendar-header">
+            <div class="week-day">Monday</div>
+            <div class="week-day">Tuesday</div>
+            <div class="week-day">Wednesday</div>
+            <div class="week-day">Thursday</div>
+            <div class="week-day">Friday</div>
+            <div class="week-day">Saturday</div>
+            <div class="week-day">Sunday</div>
+        </header>
+        <main id="calendar-main">
+            <div class="calendar-week">
+                <button class="calendar-day-button button">1</button>
+                <button class="calendar-day-button button">2</button>
+                <button class="calendar-day-button button">3</button>
+                <button class="calendar-day-button button">4</button>
+                <button class="calendar-day-button button">5</button>
+                <button class="calendar-day-button button">6</button>
+                <button class="calendar-day-button button">7</button>
+            </div>
+            <div class="calendar-week">
+                <button class="calendar-day-button button">8</button>
+                <button class="calendar-day-button button">9</button>
+                <button class="calendar-day-button button">10</button>
+                <button class="calendar-day-button button">11</button>
+                <button class="calendar-day-button button">12</button>
+                <button class="calendar-day-button button">13</button>
+                <button class="calendar-day-button button">14</button>
+            </div>
+            <div class="calendar-week">
+                <button class="calendar-day-button button">15</button>
+                <button class="calendar-day-button button">16</button>
+                <button class="calendar-day-button button">17</button>
+                <button class="calendar-day-button button">18</button>
+                <button class="calendar-day-button button">19</button>
+                <button class="calendar-day-button button">20</button>
+                <button class="calendar-day-button button">21</button>
+            </div>
+            <div class="calendar-week">
+                <button class="calendar-day-button button">22</button>
+                <button class="calendar-day-button button">23</button>
+                <button class="calendar-day-button button">24</button>
+                <button class="calendar-day-button button">25</button>
+                <button class="calendar-day-button button">26</button>
+                <button class="calendar-day-button button">27</button>
+                <button class="calendar-day-button button">28</button>
+            </div>
+        </main>
+    </div>
+    <div id="appointments">
+        <div id="appointments-list">
+
         </div>
-        <div id="index-right">
-            Kalender
+        <div id="appointments-buttons">
+            <a href="{%  url 'appointment-create' %}" class="appointment-button button" id="appointment-add">+</a>
+            <a class="appointment-button button" id="appointment-edit">#</a>
+            <a class="appointment-button button" id="appointment-delete">-</a>
         </div>
     </div>
 {% endblock %}

@@ -1,5 +1,9 @@
 #create-appointment-form {
     padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 20px;
 }
 
 input:not(#submit-appointment), textarea {
@@ -10,6 +14,8 @@ input:not(#submit-appointment), textarea {
 
 #submit-appointment {
     padding: 5px 10px;
+    border: 1px solid;
+    border-radius: 10px;
 }
 
 p {

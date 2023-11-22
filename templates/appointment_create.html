@@ -1,8 +1,10 @@
 {% extends 'base.html' %}
 {% load static %}
 
+{% block head %}
+{% endblock %}
+
 {% block content %}
-    <link rel="stylesheet" href="{% static 'appointment/../static/appointment.css' %}">
     <form method="post" id="create-appointment-form">
         {% csrf_token %}
         {{ form.as_p }}
