@@ -10,9 +10,9 @@
 
 #title {
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
-    padding: 30px 0px;
+    padding: 30px 30px;
 }
 
 #content {
@@ -26,17 +26,25 @@
 #calendar {
     width: 70%;
     height: 45vh;
-    border: 2px solid;
-    border-radius: 30px;
+    border: 3px solid;
+    border-radius: 10px;
     overflow: hidden;
-    padding: 10px 10px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
 }
 
-#calendar-header {
+#calendar-month {
+    width: 100%;
+    padding: 10px;
+    border-bottom: 2px solid;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#calendar-week {
     height: 10%;
     width: 100%;
     display: flex;
@@ -51,9 +59,7 @@
     width: 100%;
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
     align-items: center;
-    padding: 10px;
 }
 
 .calendar-week {
@@ -65,16 +71,21 @@
 }
 
 .calendar-day-button {
+    height: 100%;
+    width: 100%;
     padding: 12px 15px;
     border: 1px solid;
-    border-radius: 100%;
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 #appointments {
     width: 20%;
     height: 45vh;
     border: 2px solid;
-    border-radius: 30px;
+    border-radius: 10px;
     overflow: hidden;
     padding: 5px;
 }
