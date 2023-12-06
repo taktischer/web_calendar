@@ -8,6 +8,10 @@ from django.views.generic import TemplateView, FormView, RedirectView
 from web_app.forms import AppointmentCreateForm, LoginForm, SignUpForm
 from web_app.models import Appointment
 
+from datetime import datetime
+import logging
+
+logger = logging.getLogger('django')
 
 class IndexView(TemplateView):
     template_name = "index.html"
@@ -35,6 +39,31 @@ class AppointmentCreateView(UserPassesTestMixin, FormView):
                                    start_time=post_data['start_time'],
                                    end_time=post_data['end_time'])
         return super().form_valid(form)
+
+
+class AppointmentEditView(UserPassesTestMixin, TemplateView, RedirectView):
+    template_name = "appointment_edit.html"
+    success_url = "/"
+
+    def test_func(self):
+        return self.request.user.is_authenticated
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['appointment'] = Appointment.objects.get(pk=self.kwargs['appointment_id'])
+        return context
+
+    def post(self, request, *args, **kwargs):
+        post_data = request.POST
+        appointment_id = self.kwargs['appointment_id']
+        appointment = Appointment.objects.get(pk=appointment_id)
+        appointment.title = post_data['appointment_ttl']
+        appointment.description = post_data['appointment_dsc']
+        appointment.start_time = post_data['appointment_sttime']
+        appointment.end_time = post_data['appointment_edtime']
+        appointment.save()
+        return redirect(reverse('index'))
+
 
 
 class AppointmentDeleteRedirect(UserPassesTestMixin, RedirectView):

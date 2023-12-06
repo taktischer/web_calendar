@@ -7,5 +7,6 @@ urlpatterns = [
     path("appointment/delete/<int:appointment_id>/", views.AppointmentDeleteRedirect.as_view(),
          name="appointment-delete"),
     path("login/", views.LoginView.as_view(), name="login"),
-    path("signup/", views.SignUpView.as_view(), name="signup")
+    path("signup/", views.SignUpView.as_view(), name="signup"),
+    path("appointment/edit/<int:appointment_id>/", views.AppointmentEditView.as_view(), name="appointment-edit")
 ]
