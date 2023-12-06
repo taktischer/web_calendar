@@ -2,6 +2,7 @@ import calendar
 
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.mixins import UserPassesTestMixin
+from django.db.models import Q
 from django.http import JsonResponse
 from django.shortcuts import redirect
 from django.urls import reverse
@@ -15,6 +16,7 @@ import logging
 
 logger = logging.getLogger('django')
 
+
 class IndexView(UserPassesTestMixin, TemplateView):
     template_name = "index.html"
 
@@ -27,10 +29,10 @@ class IndexView(UserPassesTestMixin, TemplateView):
         # TODO: Change today to actual date
         month_range = calendar.monthrange(today.year, today.month)
         date_range = [f'{today.year}-{today.month}-1', f'{today.year}-{today.month}-{month_range[1]}']
-        context['appointments'] = Appointment.objects.filter(user=self.request.user,
-                                                             start_time__range=date_range,
-                                                             end_time__range=date_range)
-        return super().get_context_data(**kwargs)
+        context['appointments'] = Appointment.objects.filter(Q(start_time__range=date_range) | Q(end_time__range=date_range),
+                                                             user=self.request.user)
+        print(context['appointments'])
+        return context
 
 
 class AppointmentCreateView(UserPassesTestMixin, FormView):
@@ -47,8 +49,6 @@ class AppointmentCreateView(UserPassesTestMixin, FormView):
 
     def form_valid(self, form):
         post_data = self.request.POST
-        print(post_data)
-        print(self.request.user)
         Appointment.objects.create(user=self.request.user,
                                    title=post_data['title'],
                                    description=post_data['description'],
@@ -79,7 +79,6 @@ class AppointmentEditView(UserPassesTestMixin, TemplateView, RedirectView):
         appointment.end_time = post_data['appointment_edtime']
         appointment.save()
         return redirect(reverse('index'))
-
 
 
 class AppointmentDeleteRedirect(UserPassesTestMixin, RedirectView):
