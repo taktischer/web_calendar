@@ -3,6 +3,10 @@
     padding: 0px;
 }
 
+body {
+    overflow-x: hidden;
+}
+
 .button {
     cursor: pointer;
     text-decoration: none;
@@ -42,6 +46,8 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    background-color: black;
+    color: white;
 }
 
 #calendar-week {
@@ -52,6 +58,7 @@
     align-items: center;
     border-bottom: 1px solid;
     padding: 10px;
+    background-color: rgb(200, 200, 200);
 }
 
 #calendar-main {
@@ -82,7 +89,7 @@
 }
 
 #appointments {
-    width: 20%;
+    width: 90%;
     height: 45vh;
     border: 2px solid;
     border-radius: 10px;
@@ -119,6 +126,7 @@
 #footer {
     width: 100%;
     display: flex;
+    justify-content: flex-end;
     align-items: center;
     padding: 10px 0px;
 }
@@ -132,4 +140,135 @@
     padding: 10px 20px;
     border: 1px solid;
     border-radius: 10px;
+}
+
+
+
+
+
+
+
+
+
+
+/* Hamburger Menu */
+
+:root {
+    --rightsidenav-elements-margin: 10px;
+    --rightsidenav-elements-padding: 10px;
+}
+
+.sidenavbar {
+    position: absolute;
+    z-index: 1;
+    width: 30vh;
+    top: 0;
+    right: 0;
+    border: 1px solid;
+    transform: translateX(100%);
+    transition: var(--checkbox-transition) ease;
+    visibility: hidden;
+    margin-top: 90px;
+    padding-top: 1vh;
+    padding-bottom: 2vh;
+    padding-left: 1vh;
+}
+
+:root {
+    --checkbox-height: 5vh;
+    --checkbox-widht: 5vh;
+    --checkbox-top: 10px;
+    --checkbox-right: 10px;
+    --checkbox-transition: 0.5s;
+}
+
+.toggle-sidenavbar-input {
+    position: absolute;
+    z-index: 3;
+    height: var(--checkbox-height);
+    width: var(--checkbox-widht);
+    top: var(--checkbox-top);
+    right: var(--checkbox-right);
+    opacity: 0;
+}
+
+.toggle {
+    background-color: white;
+    position: absolute;
+    z-index: 2;
+    height: var(--checkbox-height);
+    width: var(--checkbox-widht);
+    top: var(--checkbox-top);
+    right: var(--checkbox-right);
+    display: flex;
+    justify-content: center;
+    border: 1px solid;
+    border-radius: 10px;
+}
+
+.toggle .common {
+    background-color: black;
+    position: absolute;
+    height: 10%;
+    width: 80%;
+    border-radius: 50px;
+}
+
+.toggle .top_line {
+    position: absolute;
+    top: 30%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    transition: var(--checkbox-transition) ease;
+}
+
+.toggle .middle_line {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    transition: var(--checkbox-transition) ease;
+}
+
+.toggle .bottom_line {
+    position: absolute;
+    top: 70%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    transition: var(--checkbox-transition) ease;
+}
+
+:root {
+    --toggle-lines-top: 2.2vh;
+    --toggle-lines-left: -0.5vh;
+    --toggle-lines-width: 120%;
+}
+
+input:checked ~ .toggle .top_line {
+    top: var(--toggle-lines-top);
+    left: var(--toggle-lines-left);
+    width: var(--toggle-lines-width);
+    transform: rotate(45deg);
+    transition: var(--checkbox-transition) ease;
+}
+
+input:checked ~ .toggle .middle_line {
+    visibility: hidden;
+    width: 0px;
+    transition: var(--checkbox-transition) ease;
+}
+
+input:checked ~ .toggle .bottom_line {
+    top: var(--toggle-lines-top);
+    left: var(--toggle-lines-left);
+    width: var(--toggle-lines-width);
+    transform: rotate(-45deg);
+    transition: var(--checkbox-transition) ease;
+}
+
+input:checked ~ .sidenavbar {
+    transform: translateX(0);
+    box-shadow: -15px 0px 15px 5px rgba(0, 0, 0, 0.5);
+    visibility: visible;
+    background-color: white;
 }
