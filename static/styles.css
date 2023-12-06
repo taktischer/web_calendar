@@ -165,7 +165,6 @@ body {
     top: 0;
     right: 0;
     border: 1px solid;
-    transform: translateX(100%);
     transition: var(--checkbox-transition) ease;
     visibility: hidden;
     margin-top: 90px;
@@ -267,7 +266,6 @@ input:checked ~ .toggle .bottom_line {
 }
 
 input:checked ~ .sidenavbar {
-    transform: translateX(0);
     box-shadow: -15px 0px 15px 5px rgba(0, 0, 0, 0.5);
     visibility: visible;
     background-color: white;
