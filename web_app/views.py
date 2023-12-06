@@ -1,3 +1,5 @@
+import calendar
+
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.mixins import UserPassesTestMixin
 from django.http import JsonResponse
@@ -8,13 +10,27 @@ from django.views.generic import TemplateView, FormView, RedirectView
 from web_app.forms import AppointmentCreateForm, LoginForm, SignUpForm
 from web_app.models import Appointment
 
-from datetime import datetime
+from datetime import datetime, date
 import logging
 
 logger = logging.getLogger('django')
 
-class IndexView(TemplateView):
+class IndexView(UserPassesTestMixin, TemplateView):
     template_name = "index.html"
+
+    def test_func(self):
+        return self.request.user.is_authenticated
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        today = date.today()
+        # TODO: Change today to actual date
+        month_range = calendar.monthrange(today.year, today.month)
+        date_range = [f'{today.year}-{today.month}-1', f'{today.year}-{today.month}-{month_range[1]}']
+        context['appointments'] = Appointment.objects.filter(user=self.request.user,
+                                                             start_time__range=date_range,
+                                                             end_time__range=date_range)
+        return super().get_context_data(**kwargs)
 
 
 class AppointmentCreateView(UserPassesTestMixin, FormView):
