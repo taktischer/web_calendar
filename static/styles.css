@@ -132,6 +132,8 @@ body {
 }
 
 #school-links-container {
+    display: flex;
+    flex-wrap: wrap;
     padding: 20px;
     gap: 5px;
 }
