@@ -8,5 +8,6 @@ urlpatterns = [
          name="appointment-delete"),
     path("login/", views.LoginView.as_view(), name="login"),
     path("signup/", views.SignUpView.as_view(), name="signup"),
-    path("appointment/edit/<int:appointment_id>/", views.AppointmentEditView.as_view(), name="appointment-edit")
+    path("appointment/edit/<int:appointment_id>/", views.AppointmentEditView.as_view(), name="appointment-edit"),
+    path("calender/create/", views.CreateCalendarRedirect.as_view(), name="calendar-create")
 ]

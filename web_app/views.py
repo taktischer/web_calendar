@@ -1,4 +1,4 @@
-import calendar
+import calendar as _calender
 
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.mixins import UserPassesTestMixin
@@ -9,7 +9,7 @@ from django.urls import reverse
 from django.views.generic import TemplateView, FormView, RedirectView
 
 from web_app.forms import AppointmentCreateForm, LoginForm, SignUpForm
-from web_app.models import Appointment
+from web_app.models import Appointment, Calendar
 
 from datetime import datetime, date
 import logging
@@ -27,11 +27,13 @@ class IndexView(UserPassesTestMixin, TemplateView):
         context = super().get_context_data(**kwargs)
         today = date.today()
         # TODO: Change today to actual date
-        month_range = calendar.monthrange(today.year, today.month)
-        date_range = [f'{today.year}-{today.month}-1', f'{today.year}-{today.month}-{month_range[1]}']
-        context['appointments'] = Appointment.objects.filter(Q(start_time__range=date_range) | Q(end_time__range=date_range),
-                                                             user=self.request.user)
-        print(context['appointments'])
+        calendars = Calendar.objects.filter(user=self.request.user, active=True)
+        for calendar in calendars:
+            month_range = _calender.monthrange(today.year, today.month)
+            date_range = [f'{today.year}-{today.month}-1', f'{today.year}-{today.month}-{month_range[1]}']
+            context['appointments'] = Appointment.objects.filter(
+                Q(start_time__range=date_range) | Q(end_time__range=date_range),
+                calendar=calendar)
         return context
 
 
@@ -49,7 +51,7 @@ class AppointmentCreateView(UserPassesTestMixin, FormView):
 
     def form_valid(self, form):
         post_data = self.request.POST
-        Appointment.objects.create(user=self.request.user,
+        Appointment.objects.create(calendar_id=post_data['calendar'],
                                    title=post_data['title'],
                                    description=post_data['description'],
                                    start_time=post_data['start_time'],
@@ -166,3 +168,17 @@ class SignUpView(UserPassesTestMixin, FormView):
         context = super().get_context_data(**kwargs)
         context['next'] = self.request.GET.get('next')
         return context
+
+
+class CreateCalendarRedirect(UserPassesTestMixin, RedirectView):
+    def test_func(self):
+        return self.request.user.is_authenticated
+
+    def get_redirect_url(self, *args, **kwargs):
+        self.url = self.request.META['HTTP_REFERER']
+        post_data = self.request.POST
+
+        Calendar.objects.create(user=self.request.user,
+                                name=post_data['calendar-name'])
+
+        return super().get_redirect_url(*args, **kwargs)
