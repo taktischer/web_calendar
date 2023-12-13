@@ -4,8 +4,8 @@
 {% block content %}
     <div id="calendar">
         <div id="calendar-month">
-            <div id="month">
-                <h2>January</h2>
+            <div id="month-container">
+                <h2 id="month"></h2>
             </div>
         </div>
         <div id="calendar-week">
@@ -65,4 +65,6 @@
             </div>
         </main>
     </div>
+
+    <script src="{% static 'js/calendar.js' %}"></script>
 {% endblock %}

@@ -113,8 +113,8 @@ body {
 }
 
 .appointment-button {
-    width: 15px;
-    height: 15px;
+    width: 3vh;
+    height: 3vh;
     border: 1px solid;
     border-radius: 100%;
     padding: 10px 10px;
