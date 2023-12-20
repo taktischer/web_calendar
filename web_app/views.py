@@ -155,6 +155,9 @@ class SignUpView(UserPassesTestMixin, FormView):
         if authenticated_user:
             login(self.request, authenticated_user)
 
+            Calendar.objects.create(user=self.request.user,
+                                    name=f"{user.username}'s Calendar")
+
         return super().form_valid(form)
 
     def get_success_url(self):
