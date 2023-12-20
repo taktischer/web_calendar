@@ -58,7 +58,6 @@ body {
     align-items: center;
     border-bottom: 1px solid;
     padding: 10px;
-    background-color: rgb(200, 200, 200);
 }
 
 #calendar-main {
@@ -78,14 +77,13 @@ body {
 }
 
 .calendar-day-button {
-    height: 100%;
-    width: 100%;
-    padding: 12px 15px;
+    padding: 19px 22px;
     border: 1px solid;
     background-color: white;
     display: flex;
     justify-content: center;
     align-items: center;
+    border-radius: 100%;
 }
 
 #appointments {
