@@ -33,7 +33,7 @@ class AppointmentCreateForm(ModelForm):
         end_time = cleaned_data['end_time']
 
         time_range = [f"{start_time.year}-{start_time.month}-{start_time.day} {start_time.hour}:{start_time.minute}",
-                      f"{end_time.year}-{end_time.month}-{end_time.day} {end_time.hour}:{end_time.minute}",                      ]
+                      f"{end_time.year}-{end_time.month}-{end_time.day} {end_time.hour}:{end_time.minute}"]
 
         appointments = Appointment.objects.filter(
             Q(start_time__range=time_range) | Q(end_time__range=time_range),
