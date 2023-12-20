@@ -1,21 +1,21 @@
 import re
+import calendar as _calender
 
 from django.contrib.auth import authenticate
 from django.contrib.auth.models import User
+from django.db.models import Q
 from django.forms import ModelForm
 
 from django import forms
 from django.forms.utils import ErrorList
 
-from web_app.models import Appointment
+from web_app.models import Appointment, Calendar
 
 
 class AppointmentCreateForm(ModelForm):
     class Meta:
         model = Appointment
         fields = ['calendar', 'title', 'description', 'start_time', 'end_time']
-        print(fields)
-
         widgets = {
             'calendar': forms.Select(attrs={'type': 'select'}),
             'title': forms.TextInput(attrs={'type': 'text'}),
@@ -23,6 +23,23 @@ class AppointmentCreateForm(ModelForm):
             'start_time': forms.DateTimeInput(attrs={'type': 'datetime-local'}),
             'end_time': forms.DateTimeInput(attrs={'type': 'datetime-local'})
         }
+
+    def clean(self):
+        cleaned_data = super(AppointmentCreateForm, self).clean()
+        start_time = cleaned_data['start_time']
+        end_time = cleaned_data['end_time']
+
+        time_range = [f"{start_time.year}-{start_time.month}-{start_time.day} {start_time.hour}:{start_time.minute}",
+                      f"{end_time.year}-{end_time.month}-{end_time.day} {end_time.hour}:{end_time.minute}",                      ]
+
+        appointments = Appointment.objects.filter(
+            Q(start_time__range=time_range) | Q(end_time__range=time_range),
+            calendar=cleaned_data['calendar'])
+
+        if appointments:
+            errors = {"start_time": 'An appointment is already set for this time'}
+            raise forms.ValidationError(errors)
+
 
 class LoginForm(forms.Form):
     username = forms.CharField()
