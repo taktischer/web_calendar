@@ -86,7 +86,7 @@ class AppointmentEditView(UserPassesTestMixin, TemplateView, RedirectView):
 class AppointmentDeleteRedirect(UserPassesTestMixin, RedirectView):
     def test_func(self):
         appointment = Appointment.objects.get(pk=self.kwargs['appointment_id'])
-        return self.request.user.is_authenticated and appointment.user == self.request.user
+        return self.request.user.is_authenticated and appointment.calendar.user
 
     def get_redirect_url(self, *args, **kwargs):
         self.url = "/"
