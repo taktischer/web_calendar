@@ -17,3 +17,4 @@ class Appointment(models.Model):
     description = models.CharField(max_length=500, blank=False, null=False)
     start_time = models.DateTimeField(blank=False, null=False)
     end_time = models.DateTimeField(blank=True, null=True)
+    file = models.FileField(upload_to='uploads/')

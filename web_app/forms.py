@@ -10,10 +10,11 @@ from django.forms.utils import ErrorList
 from web_app.models import Appointment
 
 
+
 class AppointmentCreateForm(ModelForm):
     class Meta:
         model = Appointment
-        fields = ['calendar', 'title', 'description', 'start_time', 'end_time']
+        fields = ['calendar', 'title', 'description', 'start_time', 'end_time', 'file']
         print(fields)
 
         widgets = {
@@ -110,4 +111,5 @@ class SignUpForm(ModelForm):
 
         if errors:
             raise forms.ValidationError({'password': errors})
+
 

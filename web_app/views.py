@@ -185,3 +185,4 @@ class CreateCalendarRedirect(UserPassesTestMixin, RedirectView):
                                 name=post_data['calendar-name'])
 
         return super().get_redirect_url(*args, **kwargs)
+
