@@ -21,28 +21,29 @@ const daysInCurrentMonth = getDaysInMonth(currentYear, currentMonth2);
 calendarMain = document.getElementById("calendar-main");
 calendarMain.innerHTML = ``;
 calendarMain.innerHTML = `
-<div id="calendar-week-0"></div>
+<div class="calendar-week" id="calendar-week-0"></div>
 `;
 
 let woche = 0
 
-for (let i = 0; i < firstDay; i++) {
+for (let i = 1; i < firstDay; i++) {
     wocheDiv = document.getElementById(`calendar-week-${woche}`);
-    wocheDiv.innerHTML = `
+    wocheDiv.innerHTML += `
     <button class="calendar-day-button button"></button>
     `;
 }
-
-for (let i = firstDay; i < daysInCurrentMonth; i++) {
-    let modulo = i % 7;
+let j = firstDay-1;
+for (let i = 1; i <= daysInCurrentMonth; i++) {
+    let modulo = j % 7;
     if (modulo == 0) {
         woche++;
         calendarMain.innerHTML += `
-            <div id="calendar-week-${woche}"></div>
+            <div class="calendar-week" id="calendar-week-${woche}"></div>
         `;
     }
+    j = j + 1;
     wocheDiv = document.getElementById(`calendar-week-${woche}`);
-    wocheDiv.innerHTML = `
-    <button className="calendar-day-button button">${i}</button>
+    wocheDiv.innerHTML += `
+    <button class="calendar-day-button button">${i}</button>
     `;
 }
