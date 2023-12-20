@@ -3,6 +3,8 @@ from django.contrib.auth.models import User as django_User
 
 
 class Calendar(models.Model):
+    def __str__(self):
+        return self.name
     user = models.ForeignKey(django_User, on_delete=models.CASCADE)
     name = models.CharField(max_length=100, null=False)
     color = models.CharField(max_length=12, null=True, blank=True)
