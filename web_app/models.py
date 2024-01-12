@@ -12,6 +12,8 @@ class Calendar(models.Model):
 
 
 class Appointment(models.Model):
+    def __str__(self):
+        return self.title
     calendar = models.ForeignKey(Calendar, on_delete=models.CASCADE)
     title = models.CharField(max_length=40, blank=False, null=False)
     description = models.CharField(max_length=500, blank=False, null=False)
