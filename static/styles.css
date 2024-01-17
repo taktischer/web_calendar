@@ -77,17 +77,19 @@ body {
 }
 
 .calendar-day-button {
-    width: 50px;
-    height: 50px;
+    width: 7vh;
+    height: 7vh;
     background-color: white;
     display: flex;
     justify-content: center;
     align-items: center;
     border-radius: 100%;
+    border: 1px solid black;
 }
 
 .calendar-day-button:hover {
-    border: 1px solid black
+    border: 2px solid black;
+    font-weight: bold;
 }
 
 #appointments {
@@ -123,6 +125,11 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+.appointment-button:hover {
+    border: 2px solid black;
+    font-weight: bold;
 }
 
 #footer {
