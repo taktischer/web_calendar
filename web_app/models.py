@@ -11,6 +11,11 @@ class Calendar(models.Model):
     active = models.BooleanField(default=True)
 
 
+class CalendarUser(models.Model):
+    user = models.ForeignKey(django_User, on_delete=models.CASCADE)
+    calendar = models.ForeignKey(Calendar, on_delete=models.CASCADE)
+
+
 class Appointment(models.Model):
     def __str__(self):
         return self.title
