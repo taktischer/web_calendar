@@ -78,12 +78,15 @@ body {
 
 .calendar-day-button {
     padding: 19px 22px;
-    border: 1px solid;
     background-color: white;
     display: flex;
     justify-content: center;
     align-items: center;
     border-radius: 100%;
+}
+
+.calendar-day-button:hover {
+    border: 1px solid black
 }
 
 #appointments {

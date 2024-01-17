@@ -33,9 +33,10 @@ for (let i = 1; i < firstDay; i++) {
     `;
 }
 let j = firstDay-1;
+let modulo = 0;
 for (let i = 1; i <= daysInCurrentMonth; i++) {
-    let modulo = j % 7;
-    if (modulo == 0) {
+    modulo = j % 7;
+    if (modulo === 0) {
         woche++;
         calendarMain.innerHTML += `
             <div class="calendar-week" id="calendar-week-${woche}"></div>
@@ -45,5 +46,14 @@ for (let i = 1; i <= daysInCurrentMonth; i++) {
     wocheDiv = document.getElementById(`calendar-week-${woche}`);
     wocheDiv.innerHTML += `
     <button class="calendar-day-button button">${i}</button>
+    `;
+}
+
+console.log(modulo);
+
+for (let i = modulo; i < 6; i++) {
+    wocheDiv = document.getElementById(`calendar-week-${woche}`);
+    wocheDiv.innerHTML += `
+    <button class="calendar-day-button button"></button>
     `;
 }
