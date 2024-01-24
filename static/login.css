@@ -1,0 +1,20 @@
+#login-out-container {
+    padding: 0px 20px;
+}
+
+.login-out {
+    padding: 10px 20px;
+    border: 1px solid;
+    border-radius: 10px;
+}
+
+
+
+
+#loginForm {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}

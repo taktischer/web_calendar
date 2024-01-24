@@ -7,7 +7,7 @@
 }
 
 input:not(#submit-appointment), textarea {
-    border: 1px solid black;
+    border: 1px solid;
     border-radius: 10px;
     padding: 5px;
 }

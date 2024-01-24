@@ -96,7 +96,7 @@ class AppointmentDeleteRedirect(UserPassesTestMixin, RedirectView):
 
 
 class LoginView(UserPassesTestMixin, FormView):
-    template_name = "login.html"
+    template_name = "registration/login.html"
     form_class = LoginForm
 
     def test_func(self):

@@ -7,19 +7,14 @@
 {% block content %}
     <div class="login-box">
         <form id="loginForm">
-            {% csrf_token %}
             <div id="title-div">
-                <label id="title-label">Sign in</label>
+                <label id="title-label">
+                    <h3>Login</h3>
+                </label>
             </div>
 
-            <div class="input-div">
-                <label class="input-label" for="username">Username</label>
-                {{ form.username }}
-            </div>
-            <div class="input-div">
-                <label class="input-label" for="username">Password</label>
-                {{ form.password }}
-            </div>
+            {% csrf_token %}
+            {{ form.as_p }}
 
             <div id="error-message">
             </div>
