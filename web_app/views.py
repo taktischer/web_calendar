@@ -98,6 +98,7 @@ class AppointmentDeleteRedirect(UserPassesTestMixin, RedirectView):
 class LoginView(UserPassesTestMixin, FormView):
     template_name = "registration/login.html"
     form_class = LoginForm
+    success_url = "/"
 
     def test_func(self):
         return not self.request.user.is_authenticated
