@@ -2,32 +2,57 @@
 {% load static %}
 
 {% block head %}
+
+    <link rel="stylesheet" href="{% static 'login.css' %}">
 {% endblock %}
 
 {% block content %}
     <div class="login-box">
-        <form id="loginForm">
+        <form id="loginForm" method="post">
             <div id="title-div">
                 <label id="title-label">
-                    <h3>Login</h3>
+                    <h2>Login</h2>
                 </label>
             </div>
 
             {% csrf_token %}
-            {{ form.as_p }}
+            <div class="form-control">
+                {{ form.username }}
+                <label>Username</label>
+            </div>
+            <div class="form-control">
+                {{ form.password }}
+                <label>Password</label>
+            </div>
 
-            <div id="error-message">
-            </div>
-            <div class="input-div">
-                <input type="submit" value="Next" id="login-submit">
-                <input type="button" value="Create account" id="signup-btn"
-                       onclick="location.href='/signup/{% if next %}?next={{ next }}{% endif %}';">
-            </div>
+            <div id="error-message"></div>
+
+        <div class="button-parent">
+        <div class="button" id="button-2">
+            <div id="slide"></div>
+            <a onclick="document.getElementById('loginForm').submit();">Login</a>
+        </div>
+
+        <div class="button" id="button-2">
+            <div id="slide"></div>
+            <a onclick="location.href='/signup/{% if next %}?next={{ next }}{% endif %}';">Sign Up</a>
+        </div>
+        </div>
         </form>
     </div>
 
 
     <script>
+        const labels = document.querySelectorAll('.form-control label')
+
+        labels.forEach(label => {
+            label.innerHTML = label.innerText
+                .split('')
+                .map((letter, index) => `<span style="transition-delay:${index * 40}ms">${letter}</span>`)
+                .join('')
+        })
+        //animation test ----------------------------------------------------------------
+
         document.getElementById('loginForm').addEventListener('submit', function (e) {
             e.preventDefault();
             let formData = new FormData(this);
