@@ -2,13 +2,7 @@
 {% load static %}
 
 {% block content %}
-<input type="checkbox" class="toggle-sidenavbar-input">
-    <div class="toggle">
-        <div class="top_line common"></div>
-        <div class="middle_line common"></div>
-        <div class="bottom_line common"></div>
-    </div>
-    <div class="sidenavbar">
+    <div id="sidenavbar">
         <div id="appointments">
             <div id="appointments-list">
 
@@ -24,7 +18,16 @@
         </div>
     </div>
 
-
+<main id="content">
+    <header id="index-header">
+        <div id="login-out-container">
+            {% if user.is_authenticated %}
+                <a href="{% url 'logout' %}" class="login-out">Logout</a>
+            {% else %}
+                <a href="{% url 'login' %}" class="login-out">Login</a>
+            {% endif %}
+        </div>
+    </header>
     <div id="calendar">
         <div id="calendar-month">
             <div id="month-container">
@@ -44,15 +47,7 @@
         </main>
     </div>
 
-    <div id="login-out-container">
-        {% if user.is_authenticated %}
-            <a href="{% url 'logout' %}" class="login-out">Logout</a>
-        {% else %}
-            <a href="{% url 'login' %}" class="login-out">Login</a>
-        {% endif %}
-    </div>
-
-    <footer id="footer">
+    <footer id="index-footer">
         <div id="school-links-container" translate="no">
             <a href="https://schueler.bulme.at/" class="school-link">Schüler Webmail</a>
             <a href="https://urania.webuntis.com/WebUntis/?school=bulme#/basic/login" class="school-link">WebUntis</a>
@@ -61,6 +56,24 @@
             <a href="https://www.bulme.at/index.php/schule/lehrkoerper/lehrerinn" class="school-link">Teacher</a>
         </div>
     </footer>
+</main>
 
     <script src="{% static 'js/calendar.js' %}"></script>
+
+    <script>
+        let appointment_view = document.getElementById('sidenavbar');
+        appointment_view.style.visibility = 'hidden';
+        let counter = 0;
+        function ShowAppointment() {
+            if (counter === 0) {
+                appointment_view.style.boxShadow = '-15px 0px 15px 5px rgba(0, 0, 0, 0.5)';
+                appointment_view.style.visibility = 'visible';
+                appointment_view.style.backgroundColor = 'var(--background)';
+                counter = 1;
+            } else {
+                appointment_view.style.visibility = 'hidden';
+                counter = 0;
+            }
+        }
+    </script>
 {% endblock %}

@@ -1,15 +1,44 @@
 const month = ["January","February","March","April","May","June","July","August","September","October","November","December"];
 const currentDate = new Date();
 
-const currentYear = currentDate.getFullYear();
+let currentYear = currentDate.getFullYear();
 let currentMonth = month[currentDate.getMonth()];
 let currentMonth2 = currentDate.getMonth();
 let currentDay = currentDate.getDate();
 
-document.getElementById("month").innerHTML = currentMonth + " " + currentYear;
+let offset = 0;
+let offset2 = 0;
+
+function ChangeOffsetNegative() {
+    offset -= 1;
+    if (currentMonth === "January") {
+        offset2 -= 1;
+        if (offset2 === 0) {
+            offset2 -= 1;
+        }
+        currentYear = currentDate.getFullYear()+offset2;
+    }
+    currentMonth = month[currentDate.getMonth()+offset];
+    currentMonth2 = currentDate.getMonth()+offset;
+    document.getElementById("month").innerHTML = '<button class="change-month-button button" onclick="ChangeOffsetNegative()">Negative</button>' + " " + currentMonth + " " + currentYear + " " + '<button class="change-month-button button" onclick="ChangeOffsetPositive()">Positive</button>';
+}
+function ChangeOffsetPositive() {
+    offset += 1;
+    if (currentMonth === "December") {
+        offset2 += 1;
+        if (offset2 === 0) {
+            offset2 += 1;
+        }
+        currentYear = currentDate.getFullYear()+offset2;
+    }
+    currentMonth = month[currentDate.getMonth()+offset];
+    currentMonth2 = currentDate.getMonth()+offset;
+    document.getElementById("month").innerHTML = '<button class="change-month-button button" onclick="ChangeOffsetNegative()">Negative</button>' + " " + currentMonth + " " + currentYear + " " + '<button class="change-month-button button" onclick="ChangeOffsetPositive()">Positive</button>';
+}
+
+document.getElementById("month").innerHTML = '<button class="change-month-button button" onclick="ChangeOffsetNegative()">Negative</button>' + " " + currentMonth + " " + currentYear + " " + '<button class="change-month-button button" onclick="ChangeOffsetPositive()">Positive</button>';
 
 let firstDay = (new Date(currentDate.getFullYear(), currentDate.getMonth())).getDay();
-console.log(firstDay)
 
 function getDaysInMonth(year, month) {
     const lastDay = new Date(year, month + 1, 0).getDate();
@@ -45,11 +74,9 @@ for (let i = 1; i <= daysInCurrentMonth; i++) {
     j = j + 1;
     wocheDiv = document.getElementById(`calendar-week-${woche}`);
     wocheDiv.innerHTML += `
-    <button class="calendar-day-button button">${i}</button>
+    <button class="calendar-day-button button" onclick="ShowAppointment()">${i}</button>
     `;
 }
-
-console.log(modulo);
 
 for (let i = modulo; i < 6; i++) {
     wocheDiv = document.getElementById(`calendar-week-${woche}`);
