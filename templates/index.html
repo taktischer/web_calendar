@@ -2,7 +2,27 @@
 {% load static %}
 
 {% block content %}
+<input type="checkbox" class="toggle-sidenavbar-input">
+    <div class="toggle">
+        <div class="top_line common"></div>
+        <div class="middle_line common"></div>
+        <div class="bottom_line common"></div>
+    </div>
+    <div class="sidenavbar">
+        <div id="appointments">
+            <div id="appointments-list">
 
+            </div>
+            <div id="appointments-buttons">
+                <a href="{%  url 'appointment-create' %}" class="appointment-button button" id="appointment-add">+</a>
+                <a class="appointment-button button" id="appointment-edit">#</a>
+                <a class="appointment-button button" id="appointment-delete">-</a>
+            </div>
+        </div>
+        <div>
+            <progress id="file" value="32" max="100"> 32% </progress>
+        </div>
+    </div>
 
 
     <div id="calendar">
