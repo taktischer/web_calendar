@@ -26,6 +26,7 @@ function ChangeOffsetNegative() {
     if (currentMonth === "January") {
         offset2 -= 1;
         currentYear = currentDate.getFullYear()+offset2;
+        offset = 0;
     }
     currentMonth = month[currentDate.getMonth()+offset];
     currentMonth2 = currentDate.getMonth()+offset;
@@ -38,6 +39,7 @@ function ChangeOffsetPositive() {
     if (currentMonth === "December") {
         offset2 += 1;
         currentYear = currentDate.getFullYear()+offset2;
+        offset = 0;
     }
     currentMonth = month[currentDate.getMonth()+offset];
     currentMonth2 = currentDate.getMonth()+offset;
