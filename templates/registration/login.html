@@ -28,15 +28,18 @@
             <div id="error-message"></div>
 
         <div class="button-parent">
-        <div class="button" id="button-2">
-            <div id="slide"></div>
-            <a onclick="document.getElementById('loginForm').submit();">Login</a>
-        </div>
 
         <div class="button" id="button-2">
             <div id="slide"></div>
             <a onclick="location.href='/signup/{% if next %}?next={{ next }}{% endif %}';">Sign Up</a>
         </div>
+
+        <div class="button" id="button-2">
+            <div id="slide"></div>
+            <a onclick="document.getElementById('loginForm').submit();">Login</a>
+        </div>
+
+
         </div>
         </form>
     </div>
