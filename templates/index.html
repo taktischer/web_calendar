@@ -71,15 +71,11 @@
                 calendar_box.style.right = '12vw';
                 appointment_view.style.backgroundColor = 'var(--background)';
                 button = document.getElementById(i);
-                button.style.border = "3px solid";
-                button.style.fontWeight = "bold";
-                button.style.transform = "scale(1.2)";
+                button.classList.add('highlighted');
                 counter = 1;
             } else {
                 appointment_view.style.visibility = 'hidden';
-                button.style.border = "1px solid";
-                button.style.fontWeight = "none";
-                button.style.transform = "scale(1)";
+                button.classList.remove('highlighted');
                 calendar_box.style.right = '0';
                 counter = 0;
             }

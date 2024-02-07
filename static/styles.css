@@ -113,6 +113,12 @@ body {
     transform: scale(1.2);
 }
 
+.calendar-day-button.highlighted {
+    border: 3px solid;
+    font-weight: bold;
+    transform: scale(1.2);
+}
+
 .change-month-button {
     background-color: transparent;
     border: 1px solid;
