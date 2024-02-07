@@ -2,12 +2,43 @@
 {% load static %}
 
 {% block head %}
+    <link rel="stylesheet" href="{% static 'appointment_create.css' %}">
 {% endblock %}
 
 {% block content %}
-    <form method="post" id="create-appointment-form" enctype="multipart/form-data">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <input type="submit" id="submit-appointment">
-    </form>
+    <div class="form-container">
+        <form method="post" id="create-appointment-form" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="input-container">
+                <label>Kalenderauswahl</label>
+                {{ form.calendar }}
+            </div>
+            <div class="input-container">
+                <label>Titel</label>
+                {{ form.title }}
+            </div>
+            <div class="input-container">
+                <label>Beschreibung</label>
+                {{ form.description }}
+            </div>
+            <div class="input-container">
+                <label>Start-Zeit</label>
+                {{ form.start_time }}
+            </div>
+            <div class="input-container">
+                <label>End-Zeit</label>
+                {{ form.end_time }}
+            </div>
+            <div class="input-container">
+                <div class="file-input">
+                    <div id="description-uploaded-file"></div>
+                    <label class="file-selection" id="description-file-label">
+                    <input type="file" id="description-file" name="description-file">
+                        Datei anhängen
+                    </label>
+                </div>
+            </div>
+            <input type="submit" id="submit-appointment">
+        </form>
+    </div>
 {% endblock %}

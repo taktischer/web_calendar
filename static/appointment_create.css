@@ -1,0 +1,48 @@
+#create-appointment-form label {
+    color: var(--paragraph);
+}
+
+.form-container {
+    display: flex;
+    margin: 10vh auto 0;
+    max-width: 1200px;
+    width: fit-content;
+
+}
+
+.input-container {
+    font-size: 18px;
+    font-weight: bold;
+    z-index: 1;
+    position: relative;
+    box-sizing: border-box;
+    padding-bottom: 10px;
+    display: flex;
+    flex-direction: column;
+    margin-top: 12px;
+}
+
+select, input {
+    border-radius: 3px;
+    background-color: var(--card-background);
+    color: var(--card-paragraph);
+    padding: 0.5em 0.3em;
+    border: none;
+}
+
+input[type="file"] {
+}
+
+label {
+    font-size: 18px;
+    color: #e2e2e2;
+    font-weight: bold;
+    z-index: 1;
+    padding-right: 20px;
+    position: relative;
+    pointer-events: none;
+    box-sizing: border-box;
+    padding-bottom: 10px;
+    display: flex;
+    flex-wrap: wrap;
+}
