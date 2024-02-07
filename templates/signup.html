@@ -14,13 +14,16 @@
                 <label id="title-label">Create account</label>
             </div>
 
+
             <div class="input-div">
                 <label class="input-label" for="username">Username</label>
                 {{ form.username }}
+            </div>
                 {% if form.errors.username %}
                     <p id="username-error">{{ form.errors.username.0 }}</p>
                 {% endif %}
-            </div>
+
+
             <div class="input-div">
                 <label class="input-label" for="username">First Name</label>
                 {{ form.first_name }}
@@ -36,6 +39,7 @@
             <div class="input-div">
                 <label class="input-label" for="username">Password</label>
                 {{ form.password }}
+            <div class="pw-req">
                 <p id="password-requirements">Your password must contain:</p>
                 <ul id="password-requirements-list">
                     {% for error in form.error_messages %}
@@ -43,11 +47,11 @@
                     {% endfor %}
                 </ul>
             </div>
+            </div>
             <div class="input-div">
-                <input type="submit" value="Next" id="login-submit">
-                <input type="button" value="Sign in" id="signup-btn"
-                onclick="location.href='/login/{% if next %}?next={{ next }}{% endif %}';">
+                <input class="signUpButton" type="submit" value="Sign Up" id="login-submit">
             </div>
         </form>
     </div>
+
 {% endblock %}
