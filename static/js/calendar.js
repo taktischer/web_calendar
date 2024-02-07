@@ -9,6 +9,8 @@ let currentDay = currentDate.getDate();
 let offset = 0;
 let offset2 = 0;
 
+
+
 document.addEventListener("DOMContentLoaded", function() {
     const currentDate = new Date();
     let currentYear = currentDate.getFullYear();
@@ -76,7 +78,7 @@ function updateCalendar(year, month) {
         j = j + 1;
         const wocheDiv = document.getElementById(`calendar-week-${woche}`);
         wocheDiv.innerHTML += `
-        <button class="calendar-day-button button" onclick="ShowAppointment()">${i}</button>
+        <button id="${i}" class="calendar-day-button button" onclick="ShowAppointment(${i})">${i}</button>
         `;
     }
     for (let i = modulo; i < 6; i++) {
