@@ -65,10 +65,17 @@
         let counter = 0;
         function ShowAppointment(i) {
             if (counter === 0) {
-                //appointment_view.style.boxShadow = '-15px 0px 15px 5px rgba(0, 0, 0, 0.5)';
-                appointment_view.style.visibility = 'visible';
                 calendar_box.style.position = 'relative';
-                calendar_box.style.right = '12vw';
+                calendar_box.style.transition = 'right 0.7s';
+                calendar_box.style.right = '0';
+
+
+                setTimeout(function() { //time for browser to set new init values
+                    appointment_view.style.visibility = 'visible';
+                    calendar_box.style.right = '12vw';
+                }, 10); //
+
+
                 appointment_view.style.backgroundColor = 'var(--background)';
                 button = document.getElementById(i);
                 button.classList.add('highlighted');
@@ -76,7 +83,9 @@
             } else {
                 appointment_view.style.visibility = 'hidden';
                 button.classList.remove('highlighted');
+
                 calendar_box.style.right = '0';
+
                 counter = 0;
             }
 
