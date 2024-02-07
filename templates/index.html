@@ -59,16 +59,21 @@
 
     <script>
         let appointment_view = document.getElementById('sidenavbar');
+        let calendar_box = document.getElementById('calendar')
         appointment_view.style.visibility = 'hidden';
+
         let counter = 0;
         function ShowAppointment() {
             if (counter === 0) {
-                appointment_view.style.boxShadow = '-15px 0px 15px 5px rgba(0, 0, 0, 0.5)';
+                //appointment_view.style.boxShadow = '-15px 0px 15px 5px rgba(0, 0, 0, 0.5)';
                 appointment_view.style.visibility = 'visible';
+                calendar_box.style.position = 'relative';
+                calendar_box.style.right = '12vw';
                 appointment_view.style.backgroundColor = 'var(--background)';
                 counter = 1;
             } else {
                 appointment_view.style.visibility = 'hidden';
+                calendar_box.style.right = '0';
                 counter = 0;
             }
         }

@@ -126,9 +126,9 @@ body {
 
 #appointments {
     width: 90%;
-    height: 45vh;
+    height: 60vh;
     border: 2px solid;
-    border-radius: 10px;
+    border-radius: 5px;
     overflow: hidden;
     padding: 5px;
 }
@@ -167,7 +167,7 @@ body {
 #index-footer {
     width: 100%;
     display: flex;
-    justify-content: flex-end;
+    justify-content: center;
     align-items: center;
     padding: 10px 0px;
 }
@@ -176,21 +176,19 @@ body {
     display: flex;
     flex-wrap: wrap;
     padding: 20px;
-    gap: 5px;
+    gap: 7px;
 }
 
 .school-link {
     padding: 10px 20px;
     border: 1px solid;
     border-radius: 10px;
+    text-decoration: none;
 }
 
-
-
-
-
-
-
+a{
+    text-decoration: none;
+}
 
 
 
@@ -198,12 +196,11 @@ body {
 #sidenavbar {
     position: absolute;
     z-index: 1;
-    width: 30vh;
+    width: 25vw;
     top: 5vh;
     right: 0;
-    border: 1px solid;
-    border-radius: 10px;
-    margin-top: 90px;
+    border-radius: 5px;
+    margin-top: 60px;
     padding: 20px 10px;
     display: flex;
     flex-direction: column;
