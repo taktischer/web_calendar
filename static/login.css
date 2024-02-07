@@ -33,12 +33,6 @@
   overflow: hidden;
 }
 
-a {
-  color: #BFC0C0;
-  text-decoration: none;
-  letter-spacing: 1px;
-}
-
 #button-2 {
     position: relative;
     overflow: hidden;
@@ -46,9 +40,17 @@ a {
     vertical-align: middle;
 }
 
-#button-2 a {
-    position: relative;
-    transition: all .35s ease-Out;
+#button-2 > a {
+ position: relative;
+    transition: all .35s ease-out;
+    color: #BFC0C0;
+    letter-spacing: 1px;
+    display: inline-block;
+    z-index: 1;
+    padding: 10px 20px;
+    width: 100%; /* Increase clickable width */
+    height: 100%; /* Increase clickable height */
+    box-sizing: border-box; /* Ensure padding doesn't affect the width/height */
 }
 
 
