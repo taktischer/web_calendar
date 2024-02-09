@@ -21,6 +21,11 @@ document.addEventListener("DOMContentLoaded", function() {
 
     updateCalendar(currentYear, currentMonth2);
     document.getElementById("month").innerHTML = '<div class="change-month-button-container">' + '<button class="change-month-button button" onclick="ChangeOffsetNegative()"><</button>' + '</div>' + '<div class="change-month-button-conatainer">' + currentMonth + " " + currentYear + '</div>' + '<div class="change-month-button-container">' + '<button class="change-month-button button" onclick="ChangeOffsetPositive()">></button>' + '</div>';
+    let calendar_container = document.getElementById("calendar");
+    let calendar_container_height = calendar_container.clientHeight;
+    let sidenavbar_container = document.getElementById("sidenavbar");
+    sidenavbar_container.style.height = calendar_container_height + "px";
+    console.log(calendar_container_height);
 });
 
 function ChangeOffsetNegative() {
@@ -37,6 +42,11 @@ function ChangeOffsetNegative() {
     currentMonth2 = offset;
     updateCalendar(currentYear, currentMonth2);
     document.getElementById("month").innerHTML = '<div class="change-month-button-container">' + '<button class="change-month-button button" onclick="ChangeOffsetNegative()"><</button>' + '</div>' + '<div class="change-month-button-conatainer">' + currentMonth + " " + currentYear + '</div>' + '<div class="change-month-button-container">' + '<button class="change-month-button button" onclick="ChangeOffsetPositive()">></button>' + '</div>';
+    let calendar_container = document.getElementById("calendar");
+    let calendar_container_height = calendar_container.clientHeight;
+    let sidenavbar_container = document.getElementById("sidenavbar");
+    sidenavbar_container.style.height = calendar_container_height + "px";
+    console.log(calendar_container_height);
 }
 
 function ChangeOffsetPositive() {
@@ -55,6 +65,11 @@ function ChangeOffsetPositive() {
     currentMonth2 = offset;
     updateCalendar(currentYear, currentMonth2);
     document.getElementById("month").innerHTML = '<div class="change-month-button-container">' + '<button class="change-month-button button" onclick="ChangeOffsetNegative()"><</button>' + '</div>' + '<div class="change-month-button-conatainer">' + currentMonth + " " + currentYear + '</div>' + '<div class="change-month-button-container">' + '<button class="change-month-button button" onclick="ChangeOffsetPositive()">></button>' + '</div>';
+    let calendar_container = document.getElementById("calendar");
+    let calendar_container_height = calendar_container.clientHeight;
+    let sidenavbar_container = document.getElementById("sidenavbar");
+    sidenavbar_container.style.height = calendar_container_height + "px";
+    console.log(calendar_container_height);
 }
 
 function updateCalendar(year, month) {
