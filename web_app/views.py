@@ -35,9 +35,8 @@ class IndexAppointmentView(UserPassesTestMixin, TemplateView):
         # TODO: Change today to actual date
         calendars = Calendar.objects.filter(user=self.request.user, active=True)
         for calendar in calendars:
-            date_range = [f'{self.kwargs["year"]}-{self.kwargs["month"]}-{self.kwargs["day"]}', f'{self.kwargs["year"]}-{self.kwargs["month"]}-{self.kwargs["day"]+1}']
             context['appointments'] = Appointment.objects.filter(
-                Q(start_time__range=date_range) | Q(end_time__range=date_range),
+                Q(start_time__range=[f'{self.kwargs["year"]}-{self.kwargs["month"]}-{self.kwargs["day"]}', f'{self.kwargs["year"]}-{self.kwargs["month"]}-{self.kwargs["day"]}']) | Q(end_time__range=[f'{self.kwargs["year"]}-{self.kwargs["month"]}-{self.kwargs["day"]}', f'{self.kwargs["year"]}-{self.kwargs["month"]}-{self.kwargs["day"]+1}']),
                 calendar=calendar)
         return context
 
