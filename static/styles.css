@@ -127,7 +127,7 @@ body {
 }
 
 .change-month-button:hover {
-    border: 3px solid;
+    transform: scale(1.1, 1.1);
 }
 
 #appointments {
