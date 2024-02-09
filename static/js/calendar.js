@@ -25,26 +25,34 @@ document.addEventListener("DOMContentLoaded", function() {
 
 function ChangeOffsetNegative() {
     offset -= 1;
+    if (offset < 0){
+        offset = 0;
+    }
     if (currentMonth === "January") {
         offset2 -= 1;
         currentYear = currentDate.getFullYear()+offset2;
-        offset = 0;
+        offset = 11;
     }
-    currentMonth = month[currentDate.getMonth()+offset];
-    currentMonth2 = currentDate.getMonth()+offset;
+    currentMonth = month[offset];
+    currentMonth2 = offset;
     updateCalendar(currentYear, currentMonth2);
     document.getElementById("month").innerHTML = '<div class="change-month-button-container">' + '<button class="change-month-button button" onclick="ChangeOffsetNegative()"><</button>' + '</div>' + '<div class="change-month-button-conatainer">' + currentMonth + " " + currentYear + '</div>' + '<div class="change-month-button-container">' + '<button class="change-month-button button" onclick="ChangeOffsetPositive()">></button>' + '</div>';
 }
 
 function ChangeOffsetPositive() {
     offset += 1;
+
+    if (offset > 11){
+        offset = 11;
+    }
+
     if (currentMonth === "December") {
         offset2 += 1;
         currentYear = currentDate.getFullYear()+offset2;
         offset = 0;
     }
-    currentMonth = month[currentDate.getMonth()+offset];
-    currentMonth2 = currentDate.getMonth()+offset;
+    currentMonth = month[offset];
+    currentMonth2 = offset;
     updateCalendar(currentYear, currentMonth2);
     document.getElementById("month").innerHTML = '<div class="change-month-button-container">' + '<button class="change-month-button button" onclick="ChangeOffsetNegative()"><</button>' + '</div>' + '<div class="change-month-button-conatainer">' + currentMonth + " " + currentYear + '</div>' + '<div class="change-month-button-container">' + '<button class="change-month-button button" onclick="ChangeOffsetPositive()">></button>' + '</div>';
 }
