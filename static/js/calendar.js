@@ -114,7 +114,7 @@ function getDaysInMonth(year, month) {
 }
 
 function redirectAppointments(day, month, year) {
-    let currentURL = "http://127.0.0.1:8000/";
+    let currentURL = "http://127.0.0.1:8000";
     let updatedURL = currentURL + "/" + day + "/" + month + "/" + year;
     window.location.href = updatedURL;
 }

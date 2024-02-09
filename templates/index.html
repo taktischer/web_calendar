@@ -7,7 +7,7 @@
             <div id="appointments-list">
                 {% for appointment in appointments %}
                     <div>
-                        {{ appointment }}
+                        <a href="http://127.0.0.1:8000/appointment/edit/{{ appointment.id }}/">{{ appointment }}</a>
                     </div>
                 {% endfor %}
             </div>
@@ -66,19 +66,18 @@
         let calendar_box = document.getElementById('calendar')
         appointment_view.style.visibility = 'hidden';
 
-        let currentURL = "http://127.0.0.1:8000/";
+        let currentURL = "http://127.0.0.1:8000";
         let counter = 0;
 
         let urlparts = window.location.href;
         let urlsplit = urlparts.split("/");
-
         function ShowAppointment(i, month, year) {
             redirectAppointments(i, month+1, year);
         }
 
         if (window.location.href !== currentURL) {
                 calendar_box.style.position = 'relative';
-                calendar_box.style.transition = 'right 0.7s';
+                    calendar_box.style.transition = 'right 0.7s';
                 calendar_box.style.right = '0';
 
                 setTimeout(function() { //time for browser to set new init values
