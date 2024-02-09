@@ -5,6 +5,7 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     path("", views.IndexView.as_view(), name="index"),
+    path("<int:day>/<int:month>/<int:year>/", views.IndexAppointmentView.as_view(), name="index-appointment"),
     path("appointment/create/", views.AppointmentCreateView.as_view(), name="appointment-create"),
     path("appointment/delete/<int:appointment_id>/", views.AppointmentDeleteRedirect.as_view(),
          name="appointment-delete"),

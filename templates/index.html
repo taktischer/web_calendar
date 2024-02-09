@@ -5,7 +5,11 @@
     <div id="sidenavbar">
         <div id="appointments">
             <div id="appointments-list">
-
+                {% for appointment in appointments %}
+                    <div>
+                        {{ appointment }}
+                    </div>
+                {% endfor %}
             </div>
             <div id="appointments-buttons">
                 <a href="{%  url 'appointment-create' %}" class="appointment-button button" id="appointment-add">+</a>

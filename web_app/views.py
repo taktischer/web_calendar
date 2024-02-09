@@ -23,19 +23,23 @@ class IndexView(UserPassesTestMixin, TemplateView):
     def test_func(self):
         return self.request.user.is_authenticated
 
+class IndexAppointmentView(UserPassesTestMixin, TemplateView):
+    template_name = "index.html"
+
+    def test_func(self):
+        return self.request.user.is_authenticated
+
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         today = date.today()
         # TODO: Change today to actual date
         calendars = Calendar.objects.filter(user=self.request.user, active=True)
         for calendar in calendars:
-            month_range = _calender.monthrange(today.year, today.month)
-            date_range = [f'{today.year}-{today.month}-1', f'{today.year}-{today.month}-{month_range[1]}']
+            date_range = [f'{self.kwargs["year"]}-{self.kwargs["month"]}-{self.kwargs["day"]}', f'{self.kwargs["year"]}-{self.kwargs["month"]}-{self.kwargs["day"]+1}']
             context['appointments'] = Appointment.objects.filter(
                 Q(start_time__range=date_range) | Q(end_time__range=date_range),
                 calendar=calendar)
         return context
-
 
 class AppointmentCreateView(UserPassesTestMixin, FormView):
     template_name = "appointment_create.html"
@@ -56,6 +60,7 @@ class AppointmentCreateView(UserPassesTestMixin, FormView):
                                    description=post_data['description'],
                                    start_time=post_data['start_time'],
                                    end_time=post_data['end_time'])
+        print("here")
         return super().form_valid(form)
 
 
