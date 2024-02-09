@@ -10,6 +10,10 @@
 
 }
 
+textarea {
+    color: var(--card-paragraph);
+}
+
 .input-container {
     font-size: 18px;
     font-weight: bold;
