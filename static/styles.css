@@ -153,7 +153,7 @@ body {
 
 #appointments {
     width: 90%;
-    height: 60vh;
+    height: 100%;
     border: 2px solid;
     border-radius: 5px;
     overflow: hidden;
@@ -223,11 +223,10 @@ a{
     position: absolute;
     z-index: 1;
     width: 25vw;
-    top: 5vh;
+    top: 4.5vh;
     right: 0;
     border-radius: 5px;
     margin-top: 60px;
-    padding: 20px 10px;
     display: flex;
     flex-direction: column;
     justify-content: center;
