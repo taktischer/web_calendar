@@ -9,8 +9,6 @@ let currentDay = currentDate.getDate();
 let offset = 0;
 let offset2 = 0;
 
-
-
 document.addEventListener("DOMContentLoaded", function() {
     const currentDate = new Date();
     let currentYear = currentDate.getFullYear();
@@ -25,7 +23,6 @@ document.addEventListener("DOMContentLoaded", function() {
     let calendar_container_height = calendar_container.clientHeight;
     let sidenavbar_container = document.getElementById("sidenavbar");
     sidenavbar_container.style.height = calendar_container_height + "px";
-    console.log(calendar_container_height);
 });
 
 function ChangeOffsetNegative() {
@@ -46,7 +43,6 @@ function ChangeOffsetNegative() {
     let calendar_container_height = calendar_container.clientHeight;
     let sidenavbar_container = document.getElementById("sidenavbar");
     sidenavbar_container.style.height = calendar_container_height + "px";
-    console.log(calendar_container_height);
 }
 
 function ChangeOffsetPositive() {
@@ -101,7 +97,7 @@ function updateCalendar(year, month) {
         j = j + 1;
         const wocheDiv = document.getElementById(`calendar-week-${woche}`);
         wocheDiv.innerHTML += `
-        <button id="${i}" class="calendar-day-button button" onclick="ShowAppointment(${i})">${i}</button>
+        <button id="${i}" class="calendar-day-button button" onclick="ShowAppointment(${i}, currentMonth2, currentYear)">${i}</button>
         `;
     }
     for (let i = modulo; i < 6; i++) {
@@ -117,3 +113,8 @@ function getDaysInMonth(year, month) {
     return lastDay;
 }
 
+function redirectAppointments(day, month, year) {
+    let currentURL = "http://127.0.0.1:8000/";
+    let updatedURL = currentURL + "/" + day + "/" + month + "/" + year;
+    window.location.href = updatedURL;
+}
