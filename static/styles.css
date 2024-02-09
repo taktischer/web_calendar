@@ -119,6 +119,27 @@ body {
     transform: scale(1.2);
 }
 
+#month-container {
+    width: 100%;
+    height: 100%;
+}
+
+#month {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.change-month-button-conatainer {
+    width: 33%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
 .change-month-button {
     background-color: transparent;
     border: 1px solid;
