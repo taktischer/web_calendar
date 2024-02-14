@@ -25,14 +25,7 @@ body {
     padding: 30px 30px;
 }
 
-#content {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 20px;
-}
+
 
 #index-header {
     width: 90%;
@@ -48,13 +41,14 @@ body {
 
 #calendar {
     width: 70%;
-    border: 3px solid;
+    border: 2px solid;
     border-radius: 10px;
     overflow: hidden;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    margin: auto;
 }
 
 #calendar-month {
@@ -152,12 +146,13 @@ body {
 }
 
 #appointments {
-    width: 90%;
-    height: 100%;
+    flex: 1 1;
     border: 2px solid;
     border-radius: 5px;
     overflow: hidden;
     padding: 5px;
+    display: none;
+    margin-left: 16px;
 }
 
 #appointments-list {
@@ -217,18 +212,9 @@ a{
     text-decoration: none;
 }
 
-
-/* Hamburger Menu */
-#sidenavbar {
-    position: absolute;
-    z-index: 1;
-    width: 25vw;
-    top: 4.5vh;
-    right: 0;
-    border-radius: 5px;
-    margin-top: 60px;
+.calendar-container {
+    flex-direction: row;
     display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    margin: auto;
+    padding: 0 16px;
 }

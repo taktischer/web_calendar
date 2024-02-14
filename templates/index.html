@@ -2,7 +2,37 @@
 {% load static %}
 
 {% block content %}
-    <div id="sidenavbar">
+<main id="content">
+    <header id="index-header">
+        <div id="login-out-container">
+            {% if user.is_authenticated %}
+                <a href="{% url 'logout' %}" class="login-out">Logout</a>
+            {% else %}
+                <a href="{% url 'login' %}" class="login-out">Login</a>
+            {% endif %}
+        </div>
+    </header>
+
+    <div class="calendar-container">
+        <div id="calendar">
+            <div id="calendar-month">
+                <div id="month-container">
+                    <h2 id="month"></h2>
+                </div>
+            </div>
+            <div id="calendar-week" translate="no">
+                <div class="week-day"><h3>Mo</h3></div>
+                <div class="week-day"><h3>Tu</h3></div>
+                <div class="week-day"><h3>We</h3></div>
+                <div class="week-day"><h3>Th</h3></div>
+                <div class="week-day"><h3>Fr</h3></div>
+                <div class="week-day"><h3>Sa</h3></div>
+                <div class="week-day"><h3>Su</h3></div>
+            </div>
+            <main id="calendar-main">
+            </main>
+        </div>
+
         <div id="appointments">
             <div id="appointments-list">
                 {% for appointment in appointments %}
@@ -19,34 +49,6 @@
         </div>
     </div>
 
-<main id="content">
-    <header id="index-header">
-        <div id="login-out-container">
-            {% if user.is_authenticated %}
-                <a href="{% url 'logout' %}" class="login-out">Logout</a>
-            {% else %}
-                <a href="{% url 'login' %}" class="login-out">Login</a>
-            {% endif %}
-        </div>
-    </header>
-    <div id="calendar">
-        <div id="calendar-month">
-            <div id="month-container">
-                <h2 id="month"></h2>
-            </div>
-        </div>
-        <div id="calendar-week" translate="no">
-            <div class="week-day"><h3>Mo</h3></div>
-            <div class="week-day"><h3>Tu</h3></div>
-            <div class="week-day"><h3>We</h3></div>
-            <div class="week-day"><h3>Th</h3></div>
-            <div class="week-day"><h3>Fr</h3></div>
-            <div class="week-day"><h3>Sa</h3></div>
-            <div class="week-day"><h3>Su</h3></div>
-        </div>
-        <main id="calendar-main">
-        </main>
-    </div>
 
     <footer id="index-footer">
         <div id="school-links-container" translate="no">
