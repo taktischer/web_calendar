@@ -66,7 +66,6 @@
     <script>
         let appointment_view = document.getElementById('sidenavbar');
         let calendar_box = document.getElementById('calendar')
-        appointment_view.style.visibility = 'hidden';
 
         let currentURL = "http://127.0.0.1:8000";
         let counter = 0;
@@ -77,34 +76,13 @@
             redirectAppointments(i, month+1, year);
         }
 
-        if (window.location.href !== currentURL) {
-                calendar_box.style.position = 'relative';
-                    calendar_box.style.transition = 'right 0.7s';
-                calendar_box.style.right = '0';
 
-                setTimeout(function() { //time for browser to set new init values
-                    appointment_view.style.visibility = 'visible';
-                    calendar_box.style.right = '12vw';
-                }, 10); //
+        console.log(document.getElementById("appointments"));
+        console.log(window.location.href);
 
-
-                appointment_view.style.backgroundColor = 'var(--background)';
-                let button = document.getElementById(urlsplit[3]);
-                button.classList.add('highlighted');
-                counter = 1;
-
-                console.log("In IF Branche");
-            } else {
-                appointment_view.style.visibility = 'hidden';
-                let button = document.getElementById(urlsplit[3]);
-                button.classList.remove('highlighted');
-
-                calendar_box.style.right = '0';
-
-                counter = 0;
-
-
-                console.log("In ELSE Branche");
-            }
+        if (!window.location.href.endsWith("http://127.0.0.1:8000") && !window.location.href.endsWith("http://127.0.0.1:8000/")) {
+            console.log("here - if")
+            document.getElementById('appointments').style.display = "unset";
+        }
     </script>
 {% endblock %}
