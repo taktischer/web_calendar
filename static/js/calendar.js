@@ -19,10 +19,6 @@ document.addEventListener("DOMContentLoaded", function() {
 
     updateCalendar(currentYear, currentMonth2);
     document.getElementById("month").innerHTML = '<div class="change-month-button-container">' + '<button class="change-month-button button" onclick="ChangeOffsetNegative()"><</button>' + '</div>' + '<div class="change-month-button-conatainer">' + currentMonth + " " + currentYear + '</div>' + '<div class="change-month-button-container">' + '<button class="change-month-button button" onclick="ChangeOffsetPositive()">></button>' + '</div>';
-    let calendar_container = document.getElementById("calendar");
-    let calendar_container_height = calendar_container.clientHeight;
-    let sidenavbar_container = document.getElementById("sidenavbar");
-    sidenavbar_container.style.height = calendar_container_height + "px";
 });
 
 function ChangeOffsetNegative() {
@@ -39,10 +35,6 @@ function ChangeOffsetNegative() {
     currentMonth2 = offset;
     updateCalendar(currentYear, currentMonth2);
     document.getElementById("month").innerHTML = '<div class="change-month-button-container">' + '<button class="change-month-button button" onclick="ChangeOffsetNegative()"><</button>' + '</div>' + '<div class="change-month-button-conatainer">' + currentMonth + " " + currentYear + '</div>' + '<div class="change-month-button-container">' + '<button class="change-month-button button" onclick="ChangeOffsetPositive()">></button>' + '</div>';
-    let calendar_container = document.getElementById("calendar");
-    let calendar_container_height = calendar_container.clientHeight;
-    let sidenavbar_container = document.getElementById("sidenavbar");
-    sidenavbar_container.style.height = calendar_container_height + "px";
 }
 
 function ChangeOffsetPositive() {
@@ -105,6 +97,13 @@ function updateCalendar(year, month) {
         wocheDiv.innerHTML += `
         <button class="calendar-day-button button"></button>
         `;
+    }
+
+    if (!window.location.href.endsWith("http://127.0.0.1:8000") && !window.location.href.endsWith("http://127.0.0.1:8000/")) {
+        let urlparts = window.location.href;
+        let urlsplit = urlparts.split("/");
+        document.getElementById(`${urlsplit[3]}`).classList.add("highlighted");
+        console.log("HERE");
     }
 }
 

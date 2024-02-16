@@ -70,13 +70,12 @@
         let currentURL = "http://127.0.0.1:8000";
         let counter = 0;
 
-        let urlparts = window.location.href;
-        let urlsplit = urlparts.split("/");
         function ShowAppointment(i, month, year) {
             redirectAppointments(i, month+1, year);
         }
 
-
+        let urlparts = window.location.href;
+        let urlsplit = urlparts.split("/");
         console.log(document.getElementById("appointments"));
         console.log(window.location.href);
 
