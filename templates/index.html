@@ -5,7 +5,7 @@
 <main id="content">
     <header id="index-header">
         <div id="login-out-container">
-            <a href="{% url 'index' %}" class="login-out">/</a>
+            <a href="{% url 'index' %}" class="login-out" title="Go Back">/</a>
             {% if user.is_authenticated %}
                 <a href="{% url 'logout' %}" class="login-out">Logout</a>
             {% else %}
