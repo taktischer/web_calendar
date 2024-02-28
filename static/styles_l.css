@@ -1,0 +1,226 @@
+
+
+* {
+    margin: 0;
+    padding: 0;
+    color: var(--headline);
+}
+
+body {
+    overflow-x: hidden;
+    background-color: var(--background);
+    color: var(--headline);
+    font-family: proxima-nova, sans-serif;
+}
+
+.button {
+    cursor: pointer;
+    text-decoration: none;
+}
+
+#title {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 30px 30px;
+}
+
+
+
+#index-header {
+    width: 90%;
+    display: flex;
+    padding: 30px;
+}
+
+.login-out {
+    border: 1px solid;
+    border-radius: 10px;
+    padding: 10px 20px;
+}
+
+.ChangeTheme {
+    border: 1px solid;
+    border-radius: 10px;
+    padding: 10px 20px;
+}
+
+#calendar {
+    width: 70%;
+    border: 2px solid;
+    border-radius: 10px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+}
+
+#calendar-month {
+    width: 100%;
+    padding: 10px;
+    border-bottom: 2px solid;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: black;
+    color: white;
+}
+
+#calendar-week {
+    height: 10%;
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    border-bottom: 1px solid;
+    padding: 10px;
+}
+
+#calendar-main {
+    height: 90%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    padding: 20px 0px;
+}
+
+.calendar-week {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.calendar-day-button {
+    width: 7vh;
+    height: 7vh;
+    background-color: transparent;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 100%;
+    border: 1px solid;
+}
+
+.calendar-day-button:hover {
+    border: 3px solid;
+    font-weight: bold;
+    transform: scale(1.2);
+}
+
+.calendar-day-button.highlighted {
+    border: 3px solid;
+    font-weight: bold;
+    transform: scale(1.2);
+}
+
+#month-container {
+    width: 100%;
+    height: 100%;
+}
+
+#month {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.change-month-button-conatainer {
+    width: 33%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+.change-month-button {
+    background-color: transparent;
+    border: 1px solid;
+    border-radius: 10px;
+    padding: 10px 20px;
+}
+
+.change-month-button:hover {
+    transform: scale(1.1, 1.1);
+}
+
+#appointments {
+    flex: 1 1;
+    border: 2px solid;
+    border-radius: 5px;
+    overflow: hidden;
+    padding: 5px;
+    display: none;
+    margin-left: 16px;
+}
+
+#appointments-list {
+    width: 100%;
+    height: 85%;
+}
+
+#appointments-buttons {
+    width: 100%;
+    height: 15%;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-direction: row-reverse;
+    border-top: 1px solid;
+}
+
+.appointment-button {
+    width: 3vh;
+    height: 3vh;
+    border: 1px solid;
+    border-radius: 100%;
+    padding: 10px 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.appointment-button:hover {
+    border: 2px solid black;
+    font-weight: bold;
+}
+
+#index-footer {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 0px;
+}
+
+#school-links-container {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 20px;
+    gap: 7px;
+}
+
+.school-link {
+    padding: 10px 20px;
+    border: 1px solid;
+    border-radius: 10px;
+    text-decoration: none;
+}
+
+a{
+    text-decoration: none;
+}
+
+.calendar-container {
+    flex-direction: row;
+    display: flex;
+    margin: auto;
+    padding: 0 16px;
+}

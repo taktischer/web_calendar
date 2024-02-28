@@ -11,6 +11,8 @@
             {% else %}
                 <a href="{% url 'login' %}" class="login-out">Login</a>
             {% endif %}
+
+            <a onclick="ChangeTheme()" class="ChangeTheme">Light/Dark</a>
         </div>
     </header>
 
@@ -66,13 +68,34 @@
 
     <script>
         let appointment_view = document.getElementById('sidenavbar');
-        let calendar_box = document.getElementById('calendar')
+        let calendar_box = document.getElementById('calendar');
 
         let currentURL = "http://127.0.0.1:8000";
         let counter = 0;
 
+        function ChangeTheme(){
+            if(localStorage.getItem("theme") == "Dark"){
+                localStorage.setItem("theme", "Light");
+            }
+            else if (localStorage.getItem("theme") == "Light"){
+                localStorage.setItem("theme", "Dark");
+            }
+            window.location.reload();
+        }
+
         function ShowAppointment(i, month, year) {
             redirectAppointments(i, month+1, year);
+        }
+
+        if (localStorage.getItem("theme") == "auto"){
+            localStorage.setItem("theme", "Dark");
+        }
+
+        if(localStorage.getItem("theme") == "Dark"){
+            document.getElementById("pagestyle").setAttribute("href" , "{% static 'styles_d.css' %}");
+        }
+        else if (localStorage.getItem("theme") == "Light"){
+            document.getElementById("pagestyle").setAttribute("href" , "{% static 'styles_l.css' %}");
         }
 
         let urlparts = window.location.href;
