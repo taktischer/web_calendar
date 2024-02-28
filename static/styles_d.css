@@ -13,11 +13,6 @@ body {
     font-family: proxima-nova, sans-serif;
 }
 
-.button {
-    cursor: pointer;
-    text-decoration: none;
-}
-
 #title {
     display: flex;
     justify-content: flex-start;

@@ -74,11 +74,11 @@
         let counter = 0;
 
         function ChangeTheme(){
-            if(localStorage.getItem("theme") == "Dark"){
-                localStorage.setItem("theme", "Light");
+            if(localStorage.getItem("theme") == "dark"){
+                localStorage.setItem("theme", "light");
             }
-            else if (localStorage.getItem("theme") == "Light"){
-                localStorage.setItem("theme", "Dark");
+            else if (localStorage.getItem("theme") == "light"){
+                localStorage.setItem("theme", "dark");
             }
             window.location.reload();
         }
@@ -88,13 +88,13 @@
         }
 
         if (localStorage.getItem("theme") == "auto"){
-            localStorage.setItem("theme", "Dark");
+            localStorage.setItem("theme", "dark");
         }
 
-        if(localStorage.getItem("theme") == "Dark"){
+        if(localStorage.getItem("theme") == "dark"){
             document.getElementById("pagestyle").setAttribute("href" , "{% static 'styles_d.css' %}");
         }
-        else if (localStorage.getItem("theme") == "Light"){
+        else if (localStorage.getItem("theme") == "light"){
             document.getElementById("pagestyle").setAttribute("href" , "{% static 'styles_l.css' %}");
         }
 
