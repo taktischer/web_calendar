@@ -82,11 +82,11 @@
         function ChangeTheme(){
             if(localStorage.getItem("theme") == "dark"){
                 localStorage.setItem("theme", "light");
-                document.getElementById("theme-switch").innerHTML = "Dark";
+                
             }
             else if (localStorage.getItem("theme") == "light"){
                 localStorage.setItem("theme", "dark");
-                document.getElementById("theme-switch").innerHTML = "Light";
+                
             }
             window.location.reload();
         }
