@@ -12,7 +12,7 @@
                 <a href="{% url 'login' %}" class="login-out">Login</a>
             {% endif %}
 
-            <a onclick="ChangeTheme()" class="ChangeTheme">Light/Dark</a>
+            <a onclick="ChangeTheme()" class="ChangeTheme" id = "theme-switch">Light</a>
         </div>
     </header>
 
@@ -72,13 +72,21 @@
 
         let currentURL = "http://127.0.0.1:8000";
         let counter = 0;
+        if(localStorage.getItem("theme") == "dark"){
+            document.getElementById("theme-switch").innerHTML = "Dark";
+        }
+        else if (localStorage.getItem("theme") == "light"){
+            document.getElementById("theme-switch").innerHTML = "Light";
+        }
 
         function ChangeTheme(){
             if(localStorage.getItem("theme") == "dark"){
                 localStorage.setItem("theme", "light");
+                document.getElementById("theme-switch").innerHTML = "Dark";
             }
             else if (localStorage.getItem("theme") == "light"){
                 localStorage.setItem("theme", "dark");
+                document.getElementById("theme-switch").innerHTML = "Light";
             }
             window.location.reload();
         }
