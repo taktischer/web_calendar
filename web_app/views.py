@@ -2,6 +2,8 @@ import calendar as _calender
 
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.mixins import UserPassesTestMixin
+from django.contrib.auth.models import User
+from django.core.exceptions import ObjectDoesNotExist
 from django.db.models import Q
 from django.http import JsonResponse
 from django.shortcuts import redirect
@@ -23,6 +25,7 @@ class IndexView(UserPassesTestMixin, TemplateView):
     def test_func(self):
         return self.request.user.is_authenticated
 
+
 class IndexAppointmentView(UserPassesTestMixin, TemplateView):
     template_name = "index.html"
 
@@ -36,9 +39,13 @@ class IndexAppointmentView(UserPassesTestMixin, TemplateView):
         calendars = Calendar.objects.filter(user=self.request.user, active=True)
         for calendar in calendars:
             context['appointments'] = Appointment.objects.filter(
-                Q(start_time__range=[f'{self.kwargs["year"]}-{self.kwargs["month"]}-{self.kwargs["day"]}', f'{self.kwargs["year"]}-{self.kwargs["month"]}-{self.kwargs["day"]}']) | Q(end_time__range=[f'{self.kwargs["year"]}-{self.kwargs["month"]}-{self.kwargs["day"]}', f'{self.kwargs["year"]}-{self.kwargs["month"]}-{self.kwargs["day"]+1}']),
+                Q(start_time__range=[f'{self.kwargs["year"]}-{self.kwargs["month"]}-{self.kwargs["day"]}',
+                                     f'{self.kwargs["year"]}-{self.kwargs["month"]}-{self.kwargs["day"]}']) | Q(
+                    end_time__range=[f'{self.kwargs["year"]}-{self.kwargs["month"]}-{self.kwargs["day"]}',
+                                     f'{self.kwargs["year"]}-{self.kwargs["month"]}-{self.kwargs["day"] + 1}']),
                 calendar=calendar)
         return context
+
 
 class AppointmentCreateView(UserPassesTestMixin, FormView):
     template_name = "appointment_create.html"
@@ -68,7 +75,14 @@ class AppointmentEditView(UserPassesTestMixin, TemplateView, RedirectView):
     success_url = "/"
 
     def test_func(self):
-        return self.request.user.is_authenticated
+        try:
+            user = User.objects.get(pk=self.request.user.id)
+            if Appointment.objects.get(pk=self.kwargs['appointment_id']).calendar.user == user:
+                return True
+            else:
+                return False
+        except ObjectDoesNotExist:
+            return False
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -190,4 +204,3 @@ class CreateCalendarRedirect(UserPassesTestMixin, RedirectView):
                                 name=post_data['calendar-name'])
 
         return super().get_redirect_url(*args, **kwargs)
-
