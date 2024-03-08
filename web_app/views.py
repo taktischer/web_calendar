@@ -42,7 +42,7 @@ class IndexAppointmentView(UserPassesTestMixin, TemplateView):
                 Q(start_time__range=[f'{self.kwargs["year"]}-{self.kwargs["month"]}-{self.kwargs["day"]}',
                                      f'{self.kwargs["year"]}-{self.kwargs["month"]}-{self.kwargs["day"]}']) | Q(
                     end_time__range=[f'{self.kwargs["year"]}-{self.kwargs["month"]}-{self.kwargs["day"]}',
-                                     f'{self.kwargs["year"]}-{self.kwargs["month"]}-{self.kwargs["day"] + 1}']),
+                                     f'{self.kwargs["year"]}-{self.kwargs["month"]}-{self.kwargs["day"]}']),
                 calendar=calendar)
         return context
 

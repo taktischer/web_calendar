@@ -1,63 +1,64 @@
-const month = ["January","February","March","April","May","June","July","August","September","October","November","December"];
+const months = ["January","February","March","April","May","June","July","August","September","October","November","December"];
 const currentDate = new Date();
-
-let currentYear = currentDate.getFullYear();
-let currentMonth = month[currentDate.getMonth()];
-let currentMonth2 = currentDate.getMonth();
-let currentDay = currentDate.getDate();
-
-let offset = 0;
-let offset2 = 0;
+let day, month, year;
 
 document.addEventListener("DOMContentLoaded", function() {
-    const currentDate = new Date();
-    let currentYear = currentDate.getFullYear();
-    let currentMonth = month[currentDate.getMonth()];
-    let currentMonth2 = currentDate.getMonth();
-    let offset = 0;
-    let offset2 = 0;
+    let split_url = new URL(window.location.href).toString().split("/");
+    try {
+        if (split_url.length === 7) {
+            day = parseInt(split_url[3])
+            month = parseInt(split_url[4])
+            year = parseInt(split_url[5])
+        } else {
+            throw Error;
+        }
+    } catch (e) {
+        let today = new Date()
+        day = parseInt(today.getDay());
+        month = parseInt(today.getMonth());
+        year = parseInt(today.getFullYear());
+    }
 
-    updateCalendar(currentYear, currentMonth2);
-    document.getElementById("month").innerHTML = '<div class="change-month-button-container">' + '<button class="change-month-button button" onclick="ChangeOffsetNegative()"><</button>' + '</div>' + '<div class="change-month-button-conatainer">' + currentMonth + " " + currentYear + '</div>' + '<div class="change-month-button-container">' + '<button class="change-month-button button" onclick="ChangeOffsetPositive()">></button>' + '</div>';
+    updateCalendar(year, month);
+    document.getElementById("month").innerHTML = '<div class="change-month-button-container">' +
+        '<button class="change-month-button button" onclick="ChangeOffsetNegative()"><</button>'
+        + '</div>' + '<div class="change-month-button-conatainer">' + months[month-1] + " " + year +
+        '</div>' + '<div class="change-month-button-container">' +
+        '<button class="change-month-button button" onclick="ChangeOffsetPositive()">></button>' + '</div>';
 });
 
 function ChangeOffsetNegative() {
-    offset -= 1;
-    if (offset < 0){
-        offset = 0;
+    if (month == 1) {
+        year -= 1;
+        month = 12
+        let daysInMonth = getDaysInMonth(year, month)
+        if (day > daysInMonth) {
+            day = daysInMonth;
+        }
+    } else {
+        month -= 1;
+        let daysInMonth = getDaysInMonth(year, month)
+        if (day > daysInMonth) {
+            day = daysInMonth;
+        }
     }
-    if (currentMonth === "January") {
-        offset2 -= 1;
-        currentYear = currentDate.getFullYear()+offset2;
-        offset = 11;
-    }
-    currentMonth = month[offset];
-    currentMonth2 = offset;
-    updateCalendar(currentYear, currentMonth2);
-    document.getElementById("month").innerHTML = '<div class="change-month-button-container">' + '<button class="change-month-button button" onclick="ChangeOffsetNegative()"><</button>' + '</div>' + '<div class="change-month-button-conatainer">' + currentMonth + " " + currentYear + '</div>' + '<div class="change-month-button-container">' + '<button class="change-month-button button" onclick="ChangeOffsetPositive()">></button>' + '</div>';
+    location.href = "http://127.0.0.1:8000" + "/" + day + "/" + month + "/" + year;
 }
 
 function ChangeOffsetPositive() {
-    offset += 1;
-
-    if (offset > 11){
-        offset = 11;
+    if (month == 12) {
+        year += 1;
+        month = 1;
+    } else {
+        month += 1
     }
 
-    if (currentMonth === "December") {
-        offset2 += 1;
-        currentYear = currentDate.getFullYear()+offset2;
-        offset = 0;
+    let daysInMonth = getDaysInMonth(year, month);
+    if (day > daysInMonth) {
+        day = daysInMonth;
     }
-    currentMonth = month[offset];
-    currentMonth2 = offset;
-    updateCalendar(currentYear, currentMonth2);
-    document.getElementById("month").innerHTML = '<div class="change-month-button-container">' + '<button class="change-month-button button" onclick="ChangeOffsetNegative()"><</button>' + '</div>' + '<div class="change-month-button-conatainer">' + currentMonth + " " + currentYear + '</div>' + '<div class="change-month-button-container">' + '<button class="change-month-button button" onclick="ChangeOffsetPositive()">></button>' + '</div>';
-    let calendar_container = document.getElementById("calendar");
-    let calendar_container_height = calendar_container.clientHeight;
-    let sidenavbar_container = document.getElementById("sidenavbar");
-    sidenavbar_container.style.height = calendar_container_height + "px";
-    console.log(calendar_container_height);
+
+    location.href = "http://127.0.0.1:8000" + "/" + day + "/" + month + "/" + year;
 }
 
 function updateCalendar(year, month) {
@@ -77,6 +78,7 @@ function updateCalendar(year, month) {
     }
     let j = placeholder;
     let modulo = 0;
+    console.log(month)
     const daysInMonth = getDaysInMonth(year, month);
     for (let i = 1; i <= daysInMonth; i++) {
         modulo = j % 7;
@@ -89,7 +91,7 @@ function updateCalendar(year, month) {
         j = j + 1;
         const wocheDiv = document.getElementById(`calendar-week-${woche}`);
         wocheDiv.innerHTML += `
-        <button id="${i}" class="calendar-day-button button" onclick="ShowAppointment(${i}, currentMonth2, currentYear)">${i}</button>
+        <button id="${i}" class="calendar-day-button button" onclick="ShowAppointment(${i}, month, year)">${i}</button>
         `;
     }
     for (let i = modulo; i < 6; i++) {
@@ -103,12 +105,11 @@ function updateCalendar(year, month) {
         let urlparts = window.location.href;
         let urlsplit = urlparts.split("/");
         document.getElementById(`${urlsplit[3]}`).classList.add("highlighted");
-        console.log("HERE");
     }
 }
 
 function getDaysInMonth(year, month) {
-    const lastDay = new Date(year, month + 1, 0).getDate();
+    const lastDay = new Date(year, month, 0).getDate();
     return lastDay;
 }
 

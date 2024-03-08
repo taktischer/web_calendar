@@ -108,11 +108,7 @@
 
         let urlparts = window.location.href;
         let urlsplit = urlparts.split("/");
-        console.log(document.getElementById("appointments"));
-        console.log(window.location.href);
-
         if (!window.location.href.endsWith("http://127.0.0.1:8000") && !window.location.href.endsWith("http://127.0.0.1:8000/")) {
-            console.log("here - if")
             document.getElementById('appointments').style.display = "unset";
         }
     </script>
