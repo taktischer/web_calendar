@@ -34,16 +34,14 @@ class IndexAppointmentView(UserPassesTestMixin, TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        today = date.today()
-        # TODO: Change today to actual date
-        calendars = Calendar.objects.filter(user=self.request.user, active=True)
-        for calendar in calendars:
-            context['appointments'] = Appointment.objects.filter(
-                Q(start_time__range=[f'{self.kwargs["year"]}-{self.kwargs["month"]}-{self.kwargs["day"]}',
-                                     f'{self.kwargs["year"]}-{self.kwargs["month"]}-{self.kwargs["day"]}']) | Q(
-                    end_time__range=[f'{self.kwargs["year"]}-{self.kwargs["month"]}-{self.kwargs["day"]}',
-                                     f'{self.kwargs["year"]}-{self.kwargs["month"]}-{self.kwargs["day"]}']),
-                calendar=calendar)
+        target_date = date(int(self.kwargs["year"]), int(self.kwargs["month"]), int(self.kwargs["day"]))
+        appointments = Appointment.objects.filter(
+            Q(start_time__date=target_date) | Q(end_time__date=target_date)
+        )
+        appointments |= Appointment.objects.filter(
+            start_time__lt=target_date, end_time__gt=target_date
+        )
+        context['appointments'] = appointments
         return context
 
 
